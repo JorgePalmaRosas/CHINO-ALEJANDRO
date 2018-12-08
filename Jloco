@@ -1,0 +1,45 @@
+jloco:- write('{"jloco":'), usuario, write('}').
+usuario:- write('["'), read(X) , write(X), write('":'), ontologia, write(']').
+ontologia:- write(' ["'),read(X) , write(X), write('":'),objeto, write(']').
+objeto:- write(' ["'), read(X), write(X), write('": '), atributo, write(']').
+atributo:- read(X), write('["'), write(X), write('":'),tipoatributo. 
+atributo1:- read(X), write('"'), write(X), write('":'),tipoatributo. 
+tipoatributo:- read(X), (X='metodo'->metodo(X); b1(X)).
+b1(X):- X='numero'->numero; b2(X).
+b2(X):- X='logico'->logico; b3(X).
+b3(X):- X='fecha'->fecha; b4(X).
+b4(X):- X='objeto'->objeto; b5(X).
+b5(X):- X='cadena'->cadena;write('error').
+cadena:- read(X), write('"'), write(X), write('",'),evaluacion.
+numero:-read(X), write(X),evaluacion.
+logico:-read(X), write(X),evaluacion.
+fecha:-read(X), write(X),evaluacion.
+evaluacion:-read(X), (X='fin'->fin(X));write(','),atributo1.
+fin:-write('').
+metodo(M):- write('"function() {'),a2,write(' return '), write(M), write(';}"').
+a2:- read(X), (X='decision'->decision;a3(X)).
+a3(X):- X='asignacion' -> asignacion;(nl,nl,nl,write('ERROR AL INGRESAR: '),write(X),nl,nl,nl).
+asignacion:-  read(X), write(X), write('='), read(Y), write(Y), write(';').
+decision:- write('if('),condicion,write(')'), verdadero.
+condicion:-read(X), write(X).
+verdadero:- write('{'),a2,write('}').
+falso:-  write('{'),a2,write('}').
+
+:- jloco.
+
+profe.
+mercado.
+2015600670.
+balance.
+objeto.
+activo.
+bancos.
+numero.
+1438,016.
+objeto.
+insumo.
+numero.
+1438,016.
+fin.
+
+{"jloco":["profe": ["mercado": ["2015600670": ["balance": ["activo": ["bancos":1438,16,"insumo":1438,16
