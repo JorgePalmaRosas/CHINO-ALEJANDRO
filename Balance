@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Convert a string into a function.</h2>
+
+<p id="demo"></p>
+
+<script> var text = '{"precio":"3047", "ISAN": "function(precio){ if (precio<=262120){ return 0+(precio*0.02);}else {if(precio<=314544){ return 5242+((precio-262120)*0.05);}else {if(precio<366969){return 13106+((precio-314544)*0.15);}else {if (precio>471817){return 28833+((precio-471817)*0.17);}}}}}","city":"New York"}';
+var obj = JSON.parse(text); 
+obj.ISAN = eval("(" + obj.ISAN + ")"); 
+document.getElementById("demo").innerHTML = "Precio:$ "+ obj.precio + ", ISAN:$ " + obj.ISAN(obj.precio).toFixed(2); </script>
+
+</body>
+</html>
